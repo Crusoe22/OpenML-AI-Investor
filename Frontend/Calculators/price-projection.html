@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Price Projection Calculator | MarketCalc</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+
+  <script defer src="price-projection.js"></script>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container">
+      <h1 class="logo">MarketCalc</h1>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="#calculator">Calculator</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CALCULATOR -->
+  <section id="calculator" class="tools">
+    <div class="container">
+
+      <h3>📈 Price Projection Calculator</h3>
+      <p style="text-align:center; color:#9ca3af; margin-bottom:2rem;">
+        Estimate potential future stock prices using historical trends
+        and machine learning regression models.
+      </p>
+
+      <div class="tool-grid">
+
+        <!-- INPUT CARD -->
+        <div class="tool-card">
+          <h4>Inputs</h4>
+
+          <label>Ticker Symbol</label>
+          <input type="text" id="ticker" placeholder="AAPL" />
+
+          <label>Time Horizon (days)</label>
+          <select id="horizon">
+            <option value="7">7 Days</option>
+            <option value="30">30 Days</option>
+            <option value="90">90 Days</option>
+          </select>
+
+          <label>Model</label>
+          <select id="model">
+            <option value="linear">Linear Regression</option>
+            <option value="rf">Random Forest</option>
+            <option value="xgb">Gradient Boosting</option>
+          </select>
+
+          <button class="btn-primary" onclick="runProjection()">
+            Run Projection
+          </button>
+        </div>
+
+        <!-- OUTPUT CARD -->
+        <div class="tool-card">
+          <h4>Results</h4>
+
+          <div id="loading" style="display:none; color:#9ca3af;">
+            Running calculation…
+          </div>
+
+          <div id="results" style="display:none;">
+            <p><strong>Current Price:</strong> $<span id="currentPrice"></span></p>
+            <p><strong>Projected Price:</strong> $<span id="projectedPrice"></span></p>
+            <p><strong>Projected Range:</strong></p>
+            <ul>
+              <li>Low: $<span id="lowPrice"></span></li>
+              <li>High: $<span id="highPrice"></span></li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</body>
+</html>
