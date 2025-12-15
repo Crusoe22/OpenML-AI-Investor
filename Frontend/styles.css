@@ -165,7 +165,7 @@ nav a:hover {
   font-size: 0.95rem;
 }
 
-.tool-card button {
+.tool-card button:disabled {
   padding: 0.6rem 1.4rem;
   border-radius: 999px;
   border: none;
@@ -262,3 +262,47 @@ nav a:hover {
   margin-bottom: 0.8rem;
 }
 
+
+/* Button for updating the chart */
+/* Button for updating the chart */
+#update-chart-btn {
+  cursor: pointer;
+  pointer-events: auto;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: none;
+  background: linear-gradient(135deg, #38bdf8, #6366f1);
+  color: #020617;
+  font-weight: 600;
+
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease,
+    filter 0.1s ease;
+}
+
+/* Hover state */
+#update-chart-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+}
+
+/* Pressed (click) state */
+#update-chart-btn:active {
+  transform: translateY(1px) scale(0.98);
+  filter: brightness(0.95);
+  box-shadow: 0 2px 6px rgba(56, 189, 248, 0.25);
+}
+
+/* Keyboard focus (accessibility) */
+#update-chart-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.5);
+}
+
+
+
+#historicalChart {
+  pointer-events: none;
+}
