@@ -13,6 +13,11 @@
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css">
 
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Scripts -->
+  <script defer src="historical-chart.js"></script>
+
 </head>
 <body>
 
@@ -40,6 +45,42 @@
       <a href="#tools" class="btn-primary">Run a Calculation</a>
     </div>
   </section>
+
+  <!-- HISTORICAL CHART -->
+  <section id="historical-chart-section" class="tools">
+    <div class="container-wide">
+      <h3>📊 Historical Stock Data</h3>
+      <div class="tool-card">
+        <!-- Ticker and Date Range Controls -->
+        <div class="controls" style="margin-bottom: 1rem;">
+          <label>Ticker Symbol:</label>
+          <div class="autocomplete" style="position:relative; display:inline-block; margin-right:1rem;">
+          <input id="hist-ticker" type="text" placeholder="AAPL" autocomplete="off" />
+          <div id="hist-ticker-list"></div>
+          </div>
+          <select id="date-range">
+              <option value="max">Max</option>
+              <option value="5y">5 Years</option>
+              <option value="1y" selected>1 Year</option>
+              <option value="6mo">6 Months</option>
+              <option value="1mo">1 Month</option>
+              <option value="5d">5 Days</option>
+              <option value="1d">1 Day</option>
+          </select>
+
+          <button id="update-chart-btn">Update Chart</button>
+
+          <canvas id="historicalChart"></canvas>
+
+        </div>
+
+        <!-- Chart -->
+        <canvas id="historicalChart" style="max-height:400px;"></canvas>
+      </div>
+    </div>
+  </section>
+
+
 
   <!-- TOOLS -->
   <section id="tools" class="tools">

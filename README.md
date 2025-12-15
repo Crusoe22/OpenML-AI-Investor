@@ -9,14 +9,14 @@
 
 # Activate python virtual environment
     
-py -m venv .venv
-.venv\Scripts\Activate
-py -m pip install -r requirements.txt
+    py -m venv .venv
+    .venv\Scripts\Activate
+    py -m pip install -r requirements.txt
 
 
 # Run pyhton on server
-(.venv) PS C:\Users\nolan\Documents\OpenMLAIinvestor\OpenML-AI-Investor> cd C:\Users\nolan\Documents\OpenMLAIinvestor\OpenML-AI-Investor\Backend
-(.venv) PS C:\Users\nolan\Documents\OpenMLAIinvestor\OpenML-AI-Investor\Backend> uvicorn main:app --reload
+    cd C:\Users\nolan\Documents\OpenMLAIinvestor\OpenML-AI-Investor\Backend
+    (.venv) PS C:\Users\nolan\Documents\OpenMLAIinvestor\OpenML-AI-Investor\Backend> uvicorn main:app --reload
 
-check on: 
-http://localhost:8000/docs
+    check on: 
+    http://localhost:8000/docs
