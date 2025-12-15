@@ -174,29 +174,6 @@ nav a:hover {
   cursor: not-allowed;
 }
 
-/* =========================
-   ABOUT & DISCLAIMER
-========================= */
-.about,
-.disclaimer {
-  padding: 4rem 0;
-}
-
-.about {
-  background: rgba(2, 6, 23, 0.8);
-}
-
-.about h3,
-.disclaimer h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1.2rem;
-}
-
-.about p,
-.disclaimer p {
-  max-width: 800px;
-  color: var(--text-muted);
-}
 
 /* =========================
    FOOTER
@@ -208,3 +185,80 @@ nav a:hover {
   font-size: 0.9rem;
   color: var(--text-muted);
 }
+
+.tool-card {
+  text-decoration: none;
+  color: inherit;
+}
+
+#projectionChart {
+  background: rgba(17, 24, 39, 0.6);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+/* =========================
+   AUTOCOMPLETE STYLES
+========================= */
+.autocomplete-items {
+  position: absolute;
+  background: var(--card-bg);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  color: var(--text-main);
+}
+
+.autocomplete-items div {
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.autocomplete-items div:hover {
+  background-color: rgba(56, 189, 248, 0.2);
+}
+
+
+/* Full-width container for How It Works section */
+.container-wide {
+  width: 95vw;          /* nearly full viewport width */
+  max-width: 95vw;      /* remove any previous max-width constraints */
+  margin: 0 auto;       /* center it */
+  padding: 0 100px;      /* small padding for readability */
+}
+
+.how-it-works {
+  background: rgba(2, 6, 23, 0.8);
+}
+.how-it-works h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  color: #38bdf8; /* sleek tech blue */
+}
+
+.how-it-works p {
+  font-size: 1.05rem;
+  max-width: 1600px;
+  line-height: 1.7;
+  color: #9ca3af; /* light text color */
+  margin-bottom: 1.5rem;
+}
+
+.how-it-works ul {
+  list-style: disc;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+  color: #e5e7eb;
+}
+
+.how-it-works ul li {
+  margin-bottom: 0.8rem;
+}
+

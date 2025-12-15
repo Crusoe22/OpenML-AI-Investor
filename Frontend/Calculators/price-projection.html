@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../styles.css">
 
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script defer src="price-projection.js"></script>
 </head>
 <body>
@@ -16,7 +19,7 @@
   <!-- NAVBAR -->
   <header class="navbar">
     <div class="container">
-      <h1 class="logo">MarketCalc</h1>
+      <h1 class="logo">QuantifyML</h1>
       <nav>
         <a href="../index.html">Home</a>
         <a href="#calculator">Calculator</a>
@@ -40,8 +43,12 @@
         <div class="tool-card">
           <h4>Inputs</h4>
 
-          <label>Ticker Symbol</label>
-          <input type="text" id="ticker" placeholder="AAPL" />
+        <label>Ticker Symbol</label>
+        <div class="autocomplete" style="position:relative;">
+            <input type="text" id="ticker" placeholder="AAPL" autocomplete="off" />
+            <div id="ticker-list" class="autocomplete-items"></div>
+        </div>
+
 
           <label>Time Horizon (days)</label>
           <select id="horizon">
@@ -62,7 +69,7 @@
           </button>
         </div>
 
-        <!-- OUTPUT CARD -->
+        <!-- OUTPUT CARD 
         <div class="tool-card">
           <h4>Results</h4>
 
@@ -81,11 +88,71 @@
           </div>
 
         </div>
+    -->
+
+        <div class="tool-card">
+            <h4>Results & Projection Graph</h4>
+
+            <div id="loading" style="display:none; color:#9ca3af;">
+                Running calculation…
+            </div>
+
+            <canvas id="projectionChart" style="display:none; max-height:300px;"></canvas>
+
+            <div id="results" style="display:none; margin-top:1rem;">
+                <p><strong>Current Price:</strong> $<span id="currentPrice"></span></p>
+                <p><strong>Projected Price:</strong> $<span id="projectedPrice"></span></p>
+                <p><strong>Projected Range:</strong></p>
+                <ul>
+                <li>Low: $<span id="lowPrice"></span></li>
+                <li>High: $<span id="highPrice"></span></li>
+                </ul>
+            </div>
+
+            </div>
+
 
       </div>
 
     </div>
   </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how-it-works" class="how-it-works">
+    <div class="container-wide">
+        <h3>How QuantifyML Works</h3>
+
+        <p>
+        QuantifyML’s Price Projection Calculator leverages historical market data and advanced machine learning models
+        to estimate potential stock price movements over your chosen time horizon. Users simply input a ticker symbol,
+        select a horizon, and choose a model to run the projection.
+        </p>
+
+        <p><strong>Frontend:</strong> When you click “Run Projection,” your inputs are sent securely to the backend via an API request.
+        While processing, a loading indicator is displayed. Once results return, the current price, projected price, and
+        low/high range are displayed, accompanied by a dynamic graph illustrating the forecasted trend.
+        </p>
+
+        <p><strong>Backend:</strong> The backend, powered by Python, fetches the latest stock data. Based on the selected model
+        (Linear Regression, Random Forest, or Gradient Boosting), it applies machine learning to generate a projection.
+        Each model calculates the expected price and a confidence range (low/high) using historical volatility and trends,
+        and sends the processed data back in JSON format for visualization.
+        </p>
+
+        <p><strong>Machine Learning Models:</strong></p>
+        <ul>
+        <li><strong>Linear Regression:</strong> Estimates a trend line based on historical prices.</li>
+        <li><strong>Random Forest:</strong> Uses multiple decision trees to capture non-linear patterns and improve accuracy.</li>
+        <li><strong>Gradient Boosting:</strong> Sequentially improves predictions by minimizing errors from previous iterations.</li>
+        </ul>
+
+        <p>
+        All calculations happen in real-time, providing immediate, data-driven insights. QuantifyML is an educational tool, not financial advice,
+        designed to demonstrate how machine learning can be applied to stock forecasting in an interactive, high-tech environment.
+        </p>
+    </div>
+    </section>
+
 
 </body>
 </html>
