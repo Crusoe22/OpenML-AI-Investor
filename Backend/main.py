@@ -89,20 +89,25 @@ def price_projection(req: ProjectionRequest):
 # Endpoint expects 'period' as query parameter
 @app.get("/api/historical")
 def historical(ticker: str, period: str):
-    import yfinance as yf
 
     try:
         df = yf.download(ticker, period=period, progress=False)
     except Exception as e:
         return {"error": str(e), "dates": [], "prices": []}
 
-    if df.empty or "Close" not in df.columns:
+    if df.empty:
         return {"error": "No data available for this ticker/period", "dates": [], "prices": []}
 
+    # Handle MultiIndex vs single index
+    close = df["Close"]
+    if isinstance(close, pd.DataFrame):
+        close = close.iloc[:, 0]  # extract Series safely
+
     return {
-        "dates": df.index.strftime("%Y-%m-%d").to_list(),
-        "prices": df["Close"].to_list()
+        "dates": close.index.strftime("%Y-%m-%d").tolist(),
+        "prices": close.astype(float).tolist()
     }
+
 
 
 
