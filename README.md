@@ -4,7 +4,7 @@
     py -m http.server 5500
 
 # then search 
-    http://localhost:5500/
+    http://localhost:5500/frontend
 
 
 # Activate python virtual environment
