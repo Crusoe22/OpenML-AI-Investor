@@ -8,6 +8,11 @@ import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
 
+# Add these imports at the top
+from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
+from sklearn.model_selection import train_test_split
+import xgboost as xgb
+
 # ---- Initialize FastAPI app ----
 app = FastAPI(title="MarketCalc API")
 
@@ -26,6 +31,8 @@ class ProjectionRequest(BaseModel):
     ticker: str
     horizon: int
     model: str
+
+
 
 # ---- API Endpoint: Price Projection ----
 @app.post("/api/price-projection")
@@ -47,6 +54,12 @@ def price_projection(req: ProjectionRequest):
     X = np.arange(len(prices)).reshape(-1, 1)
     y = prices.values
 
+    # Train/test split (time-aware, no shuffle)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, shuffle=False
+    )
+
+
     # Select model
     if model_type == "rf":
         # Random Forest model for capturing non-linear trends
@@ -55,12 +68,30 @@ def price_projection(req: ProjectionRequest):
         # Default to Linear Regression (linear trend)
         model = LinearRegression()
 
+
+
     # Train the model on historical data
-    model.fit(X, y)
+    model.fit(X_train, y_train)
+
+    # Predictions on test set
+    y_pred = model.predict(X_test) 
+
+    # Evaluation metrics
+    r2 = r2_score(y_test, y_pred) 
+    mae = mean_absolute_error(y_test, y_pred)
+    mse = mean_squared_error(y_test, y_pred)
+
 
     # Forecast future price
     future_index = np.array([[len(prices) + horizon]]) # Index for future date
     projected_price = float(model.predict(future_index)[0]) # Model prediction
+
+    # Generate linear trend for historical points (for plotting)
+    linear_trend = None
+    # Forecast future price indices for linear regression trend
+    if model_type != "rf":  
+        future_X = np.arange(len(prices) + horizon).reshape(-1, 1)  # include future horizon
+        linear_trend = model.predict(future_X).tolist()
 
     current_price = float(prices.iloc[-1]) # Most recent closing price
 
@@ -79,8 +110,11 @@ def price_projection(req: ProjectionRequest):
         "projected_price": round(float(projected_price), 2),
         "low_price": round(low_price, 2),
         "high_price": round(high_price, 2),
+        "r2_score": round(float(r2), 4),  
+        "mean_absolute_error": round(float(mae), 2), 
+        "mean_squared_error": round(float(mse), 2),  
+        "linear_trend": linear_trend  # new field
     }
-
 
 
 

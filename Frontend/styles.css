@@ -306,3 +306,46 @@ nav a:hover {
 #historicalChart {
   pointer-events: none;
 }
+
+
+
+
+
+
+/*Results Drop in */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.metric-card {
+  background: #020617;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+}
+
+.metric-card span {
+  color: #9ca3af;
+  font-size: 0.85rem;
+}
+
+.metric-card strong {
+  font-size: 1.5rem;
+  color: #38bdf8;
+}
+
+.chart-card {
+  background: #020617;
+  border-radius: 12px;
+  padding: 1rem;
+  height: 480px;
+}
+
+.chart-card canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
