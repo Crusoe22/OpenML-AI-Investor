@@ -13,8 +13,23 @@ from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 import xgboost as xgb
 
+from routers.compound_growth import router as compound_growth_router
+
+
+app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Register router
+app.include_router(compound_growth_router)
+
 # ---- Initialize FastAPI app ----
-app = FastAPI(title="MarketCalc API")
+#app = FastAPI(title="MarketCalc API")
 
 # ---- CORS (allow frontend to talk to backend) ----
 # This allows requests from any origin (e.g., frontend running on a different domain/port)
@@ -24,6 +39,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 # ---- Request Schema ----
 # This validates the POST request body
