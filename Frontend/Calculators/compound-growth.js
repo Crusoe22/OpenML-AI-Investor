@@ -63,7 +63,6 @@ function drawChart(growthData) {
   chart = new Chart(ctx, {
     type: "line",
     data: {
-      //labels: labels,
       datasets: [{
         label: "Portfolio Value ($)",
         data: points,
@@ -73,23 +72,12 @@ function drawChart(growthData) {
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
+      maintainAspectRatio: false, // MUST be false
       scales: {
-        x: {
-          type: "linear",
-          title: { display: true, text: "Years" },
-          ticks: {
-            stepSize: 1,     // only whole years
-            precision: 0    // no decimals
-          }
-        },
-        y: {
-          title: { display: true, text: "Portfolio Value ($)" },
-          ticks: {
-            callback: value => `$${value.toLocaleString()}`
-          }
-        }
+        x: { type: "linear", title: { display: true, text: "Years" }, ticks: { stepSize: 1, precision: 0 } },
+        y: { title: { display: true, text: "Portfolio Value ($)" }, ticks: { callback: v => `$${v.toLocaleString()}` } }
       }
     }
   });
+
 }

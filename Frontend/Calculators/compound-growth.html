@@ -8,57 +8,9 @@
   <!-- Global Styles -->
   <link rel="stylesheet" href="../styles.css">
 
-  <!--
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #020617;
-      color: #e5e7eb;
-      padding: 2rem;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 2rem;
-    }
-
-    input, select, button {
-      width: 100%;
-      padding: 0.6rem;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      border: none;
-    }
-
-    button {
-      background: linear-gradient(135deg, #38bdf8, #6366f1);
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .summary {
-      margin-top: 1rem;
-      display: flex;
-      gap: 1rem;
-    }
-
-    .summary div {
-      background: #020617;
-      border: 1px solid #334155;
-      padding: 1rem;
-      border-radius: 8px;
-      flex: 1;
-    }
-
-    canvas {
-      background: #020617;
-      padding: 1rem;
-      border-radius: 10px;
-    }
-  </style>
-  -->
 </head>
+
+
 <body>
 
   <!-- NAVBAR -->
@@ -75,59 +27,82 @@
 
   <section id="calculator" class="tools">
     <div class="container">
+
       <h1>Compound Growth Calculator</h1>
-      <!-- INPUTS -->
-      <div>
-        <label>Years to Invest</label>
-        <input id="years" type="number" value="30">
 
-        <label>Expected Return (%)</label>
-        <input id="rate" type="number" value="7">
+            <!-- MAIN LAYOUT WRAPPER -->
+      <div class="tool-grid">
+      <!-- INPUT CARD -->
+        <div class="tool-card">
+          <!-- LEFT: INPUTS -->
+          <div class="calculator-inputs">
+            <h2>Investment Inputs</h2>
 
-        <label>Initial Investment ($)</label>
-        <input id="principal" type="number" value="10000">
+            <ul class="input-list">
+              <li>
+                <label>Years to Invest</label>
+                <input id="years" type="number" value="30">
+              </li>
 
-        <label>Periodic Contribution ($)</label>
-        <input id="contribution" type="number" value="500">
+              <li>
+                <label>Expected Return (%)</label>
+                <input id="rate" type="number" value="7">
+              </li>
 
-        <label>Contribution Frequency</label>
-        <select id="frequency">
-          <option value="monthly">Monthly</option>
-          <option value="quarterly">Quarterly</option>
-          <option value="annually">Annually</option>
-        </select>
+              <li>
+                <label>Initial Investment ($)</label>
+                <input id="principal" type="number" value="10000">
+              </li>
 
-        <button class="btn-primary" onclick="calculateGrowth()">Calculate Growth</button>
+              <li>
+                <label>Periodic Contribution ($)</label>
+                <input id="contribution" type="number" value="500">
+              </li>
 
-        <div class="summary">
-          <div>
-            <strong>Final Value</strong>
-            <p id="finalValue">$0</p>
+              <li>
+                <label>Contribution Frequency</label>
+                <select id="frequency">
+                  <option value="monthly">Monthly</option>
+                  <option value="quarterly">Quarterly</option>
+                  <option value="annually">Annually</option>
+                </select>
+              </li>
+
+              
+              <button class="btn-primary" onclick="calculateGrowth()">
+                Calculate Growth
+              </button>
+              
+            </ul>
           </div>
-          <div>
-            <strong>Total Invested</strong>
-            <p id="totalInvested">$0</p>
-          </div>
-          <div>
-            <strong>Total Gain</strong>
-            <p id="totalGain">$0</p>
+        </div>
+        <!-- OUTPUT CARD -->
+        <div class="tool-card calculator-card">
+          <!-- RIGHT: SUMMARY + CHART -->
+          <div class="calculator-output">
+
+
+            <div class="chart-box">
+              <canvas id="growthChart"></canvas>
+            </div>
+            
+            <div class="summary-inline">
+              <strong>Final Value:</strong> <span id="finalValue">$0</span> &nbsp;&nbsp;
+              <strong>Total Invested:</strong> <span id="totalInvested">$0</span> &nbsp;&nbsp;
+              <strong>Total Gain:</strong> <span id="totalGain">$0</span>
+            </div>
+             
+
           </div>
         </div>
       </div>
 
-    <!-- CHART -->
-    <div>
-      <canvas id="growthChart"></canvas>
-    </div>
 
-    </div>
-
-    <!-- Chart.js MUST load first -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Your chart logic -->
     <script src="compound-growth.js"></script>
   </section>
+
 
 </body>
 </html>

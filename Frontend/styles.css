@@ -147,6 +147,10 @@ nav a:hover {
   border-radius: 18px;
   padding: 2rem;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  
+  display: flex;
+  flex-direction: column;   /* stack contents */
+  height: 650px;            /* force height for chart */
 }
 
 .tool-card:hover {
@@ -310,42 +314,76 @@ nav a:hover {
 
 
 
+/* compound-growth layout */
+
+.input-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.input-list li {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.input-list label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.summary {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.chart-wrapper {
+  position: relative;
+  height: 420px;
+}
 
 
-/*Results Drop in */
-.metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+/* FORCE side-by-side calculator layout */
+.calculator-layout {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+/* Left column */
+.calculator-inputs {
+  flex: 0 0 360px;
+}
+
+/* Right column */
+.calculator-output {
+  flex: 1;
+  display: flex;
+  flex-direction: column;   /* allows chart + summary */
   gap: 1rem;
-  margin-bottom: 2rem;
 }
-
-.metric-card {
-  background: #020617;
-  border: 1px solid #1e293b;
-  border-radius: 12px;
-  padding: 1.2rem;
-  text-align: center;
-}
-
-.metric-card span {
-  color: #9ca3af;
-  font-size: 0.85rem;
-}
-
-.metric-card strong {
-  font-size: 1.5rem;
-  color: #38bdf8;
-}
-
-.chart-card {
-  background: #020617;
+.chart-box {
+  background: #0f172a;       /* dark panel */
   border-radius: 12px;
   padding: 1rem;
-  height: 480px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  height: 1000px;
+  display: flex;
+  height: 60vh;  /* 60% of the viewport height */
 }
 
-.chart-card canvas {
+.chart-box canvas {
+  flex: 1; 
   width: 100% !important;
   height: 100% !important;
+}
+
+.summary-inline {
+  display: flex;
+  align-items: center;
+  gap: 2rem;  /* space between metrics */
+  font-size: 1rem;
 }
